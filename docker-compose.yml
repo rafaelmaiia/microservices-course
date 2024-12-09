@@ -58,14 +58,14 @@ services:
       - rm-network
 
   naming-server:
-    image: rafaelmaiia/naming-server:0.0.1-SNAPSHOT
+    image: rafaelmaiia/naming-server:latest
     ports:
       - 8761:8761
     networks:
       - rm-network
 
   api-gateway:
-    image: rafaelmaiia/api-gateway:0.0.1-SNAPSHOT
+    image: rafaelmaiia/api-gateway:latest
     ports:
       - 8765:8765
     depends_on:
@@ -82,11 +82,8 @@ services:
       - rm-network
 
   cambio-service:
-    image: rafaelmaiia/cambio-service
+    image: rafaelmaiia/cambio-service:latest
     restart: always
-    build:
-      context: .
-      dockerfile: cambio-service/Dockerfile
     environment:
       TZ: America/Sao_Paulo
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka/
@@ -111,11 +108,8 @@ services:
       - rm-network
 
   book-service:
-    image: rafaelmaiia/book-service
+    image: rafaelmaiia/book-service:latest
     restart: always
-    build:
-      context: .
-      dockerfile: book-service/Dockerfile
     environment:
       TZ: America/Sao_Paulo
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka/
